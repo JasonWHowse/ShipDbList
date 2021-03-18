@@ -1,0 +1,83 @@
+﻿@model ShipDbListApplication.Models.Ships
+
+<br />
+<h2 class="text-info">
+    @(Model.Id!=0?"Edit":"Create") Ship</h2>
+
+    <div class="border container" style="padding:30px;">
+        <form method="post">
+            @if (Model.Id != 0) {
+                <input type="hidden" asp-for="Id" />
+            }
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="ShipName"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="ShipName" class="form-control" />
+                    <span asp-validation-for="ShipName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="Weight"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="Weight" class="form-control" />
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="HardPoints"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="HardPoints" class="form-control" />
+                    <span asp-validation-for="HardPoints" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="Type"></label>
+                </div>
+                <div class="col-6">
+                    @if (Model.Id != 0) {
+                        <input asp-for="Type" class="form-control" />
+                    } else {
+                        <input asp-for="Type" value="" class="form-control" />
+                    }
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="Class"></label>
+                </div>
+                <div class="col-6">
+                    @if (Model.Id != 0) {
+                        <input asp-for="Class" class="form-control" />
+                    } else {
+                        <input asp-for="Class" value="" class="form-control" />
+                    }
+                    <span asp-validation-for="Class" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row row">
+                <div class="col-3 offset-3">
+                    <button type="submit" class="btn btn-primary form-control">
+                        @(Model.Id!=0?"Edit":"Create") Ship
+                    </button>
+                </div>
+                <div class="col-3">
+                    <a asp-action="Index" class="btn btn-success form-control">
+                        Back
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @section scripts{
+        <partial name="_ValidationScriptsPartial" />
+    }
