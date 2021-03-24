@@ -71,15 +71,6 @@ namespace ShipDbListApplication.Controllers {
             return row;
         }
 
-        private Ships newRow(Ships row) {
-            Ships ro = new Ships();
-            ro.Type = row.Type;
-            ro.Class = row.Class;
-            ro.HardPoints = row.HardPoints;
-            ro.Weight = row.Weight;
-            ro.ShipName = row.ShipName;
-            return ro;
-        }
 
         #region API Calls
 
@@ -107,10 +98,16 @@ namespace ShipDbListApplication.Controllers {
             if (row == null) {
                 return Json(new { success = false, message = "Failure" });
             }
-            db.ShipDbs.Add(newRow(row));
+            db.ShipDbs.Add(new Ships { Type = row.Type, Class = row.Class, HardPoints = row.HardPoints, Weight = row.Weight, ShipName = row.ShipName });
             await db.SaveChangesAsync();
             return Json(new { success = true, message = "Success!" });
         }
         #endregion
+
+
+        private Ships newRow(Ships row) {
+            Ships ro = new Ships();
+            return ro;
+        }
     }
 }
